@@ -148,3 +148,13 @@ def event_search(request):
         events = events.filter(title__icontains=query) | events.filter(category__name__icontains=query)
 
     return render(request, 'event_search.html', {'events': events, 'query': query})
+
+
+def my_events(request):
+    events = Event.objects.filter(creator=request.user)
+
+    context={
+        'events': events
+    }
+
+    return render(request, 'my_events.html', context)

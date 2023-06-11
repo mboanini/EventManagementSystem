@@ -20,4 +20,5 @@ urlpatterns = [
     path('sold-out/', views.sold_out, name='sold_out'),
     path('unauthorized_page/', views.unauthorized_page, name='unauthorized_page'),
     path('search/', views.event_search, name='event_search'),
+    path('myEvents/', views.my_events, name='my_events'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
