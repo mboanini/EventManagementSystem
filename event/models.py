@@ -1,4 +1,5 @@
 import datetime
+from PIL import Image
 
 from django.db import models
 from django.contrib.auth.models import User
@@ -12,7 +13,7 @@ class Event(models.Model):
     location = models.CharField(max_length=100)
     program = models.TextField(default='Not Available')
     # ticket_price = models.DecimalField(max_digits=8, decimal_places=2)
-    # image = models.ImageField(upload_to='event/images/')
+    image = models.ImageField(upload_to='event/images/', null=True, blank=True)
     category = models.ManyToManyField('EventCategory')
     # participants = models.ManyToManyField(User, related_name="events_participants")
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='events_created')
