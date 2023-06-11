@@ -2,6 +2,7 @@ from django import forms
 from .models import Event
 from django.contrib.auth.forms import UserCreationForm, User
 
+
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event
