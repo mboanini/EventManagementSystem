@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Event, EventCategory, Registration
+from .models import Event, Registration
 from django.contrib.auth.decorators import login_required
 from .forms import EventForm, SignUpForm
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib import messages
 
@@ -147,3 +147,13 @@ def my_events(request):
     }
 
     return render(request, 'my_events.html', context)
+
+
+@login_required()
+def my_profile(request):
+    user = request.user
+    created_events = Event.objects.filter(creator=user)
+    registered_events = Event.objects.filter(registrations__participant=user)
+
+    return render(request, 'profile.html', {'created_events': created_events,
+                                            'registered_events': registered_events})

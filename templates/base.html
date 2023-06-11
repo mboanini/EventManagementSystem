@@ -44,6 +44,8 @@
                             Hi, {{ request.user.username }}!
                     </button>
                     <div class="dropdown-menu" style="border-radius:2%;" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'event:my_profile' %}">
+                            My Profile</a>
                         <a class="dropdown-item" href="{% url 'event:create_event' %}">
                             Create Event</a>
                         <a class="dropdown-item" href="{% url 'event:my_events' %}">
