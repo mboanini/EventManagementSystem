@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %} Events {% endblock title %}
+{% block content %}
+    <h1>Event List</h1>
+    <ul>
+        {% for event in events %}
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {{ event.title }}
+                    </h5>
+                    <h6 class="sub-title mb-2 text-body-secondary">{{ event.date }} {{ event.time }}</h6>
+                    <p class="card-descr">
+                        {{ event.description }}
+                    </p>
+                    <a href="{% url 'event:event_detail' title=event.title %}" class="btn btn-outline-info">Details</a>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+

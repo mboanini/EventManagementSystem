@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %} Log Out {% endblock title %}
+
+{% block content %}
+    <h1>Log Out</h1>
+
+    <p> Are you sure you want to log out?</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">
+            <a href="{%  url 'event:event_list' %}">Log Out</a>
+        </button>
+    </form>
+{% endblock %}
