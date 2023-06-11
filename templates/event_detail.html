@@ -3,11 +3,26 @@
 {% block title %} Event Details {% endblock title %}
 
 {% block content %}
-    <h1>{{ event.title }}</h1>
-    <p>{{ event.description }}</p>
-    <p>Date: {{ event.date }}</p>
-    <p>Time: {{ event.time }}</p>
-    <p>Place: {{ event.location }}</p>
-    <p>Available seats: {{ event.available_seats }}</p>
-    <p>Program: {{ event.program }}</p>
+    <div class="d-flex justify-content-center mt-3">
+        <div class="card col-11" style = "background-color: #e6d4f7;">
+            <img src="{{ MEDIA_URL }}{{ evento.image.url }}" class="card-img-top img-fluid rounded-start" alt="Evento Image">
+            <div class="card-body">
+                <h4 class="card-title text-uppercase">{{ event.title }}</h4>
+                <p class="sub-title">{{ event.description }}</p>
+                <p><u>Date</u>: {{ event.date }}</p>
+                <p><u>Time</u>: {{ event.time }}</p>
+                <p><u>Place</u>: {{ event.location }}</p>
+                <p><u>Program</u>: {{ event.program }}</p>
+            </div>
+            <div class="card-footer">
+            <p>Only {{ event.available_seats }} seats available! Are you interested?
+                <a href="{% url 'event:login' %}" class="link-offset-2 link-offset-3-hover link-underline
+                    link-underline-opacity-0 link-underline-opacity-75-hover">
+                    Click here
+                </a>
+            </p>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
