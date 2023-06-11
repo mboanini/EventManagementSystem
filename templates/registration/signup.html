@@ -6,12 +6,12 @@
 
 {% block content %}
     <div class="m-3">
-    <h1 class="text-center">Welcome to Season Events!</h1>
+        <h1 class="text-center">Welcome to Season Events!</h1>
 
-    <form method="POST">
-        {% csrf_token %}
-        {{ form | crispy }}
-        <button class="btn btn-light " type="submit" style="border-color: darkgrey">Sign up</button>
-    </form>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form | crispy }}
+            <button class="btn btn-light " type="submit" style="border-color: darkgrey">Sign up</button>
+        </form>
     </div>
 {% endblock %}

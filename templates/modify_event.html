@@ -1,12 +1,16 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
 
 {% block title %} Modify Event {% endblock title %}
 
 {% block content %}
-    <h1>Modify Event</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Save">
-    </form>
+    <h1 class="text-center">Modify Event</h1>
+    <div class="d-flex justify-content-center">
+        <form class="col-6 mb-3" method="POST">
+            {% csrf_token %}
+            {{ form | crispy }}
+            <input class="btn btn-light" type="submit" style="border-color: darkgrey" value="Save">
+        </form>
+    </div>
 {% endblock %}
