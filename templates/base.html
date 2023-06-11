@@ -11,48 +11,61 @@
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <style>
+        body{
+            margin-bottom: 60px;
+        }
+    </style>
+
     <!--<link rel="shortcut icon" href="images/logo.ico" type="image/x-icon">-->
 </head>
 <body>
     <nav class="navbar navbar-expand-lg" style="background-color: #8868de;">
         <div class="container-fluid">
             <a class="navbar-brand h1" style="color: white" href="http://127.0.0.1:8000">Season Events</a>
-                <form class="d-flex" role="search" method="GET" action="{% url 'event:event_search' %}">
-                    <input class="form-control me-2" type="text" name="query" placeholder="Search" aria-label="Search"
-                        value="{{ query }}">
-                    <button class="btn btn-outline-light" type="submit">Search</button>
-                </form>
-                {% if not user.is_authenticated %}
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'event:login' %}" style="color:white;">Log in</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'event:signup' %}" style="color:white;">Sign Up</a>
-                        </li>
-                    </ul>
-                {% else %}
-                    <div class="dropdown text-end">
-                        <button class="btn btn-outline-light dropdown-toggle" id="dropdownMenuButton" type="button"
+            <form class="d-flex" role="search" method="GET" action="{% url 'event:event_search' %}">
+                <input class="form-control me-2" type="text" name="query" placeholder="Search" aria-label="Search"
+                    value="{{ query }}">
+                <button class="btn btn-outline-light" type="submit">Search</button>
+            </form>
+            {% if not user.is_authenticated %}
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'event:login' %}" style="color:white;">Log in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'event:signup' %}" style="color:white;">Sign Up</a>
+                    </li>
+                </ul>
+            {% else %}
+                <div class="dropdown text-end">
+                    <button class="btn btn-outline-light dropdown-toggle mx-2" style="border-radius:2%;" id="dropdownMenuButton" type="button"
                             aria-expanded="false" data-toggle="dropdown" aria-haspopup="true">
                             Hi, {{ request.user.username }}!
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="{% url 'event:create_event' %}">
-                                Create Event</a>
-                            <a class="dropdown-item" href="{% url 'event:my_events' %}">
-                                Manage Event</a>
-                            <a class="dropdown-item" href="{% url 'event:logout' %}">
-                                Log out</a>
-                        </div>
+                    </button>
+                    <div class="dropdown-menu" style="border-radius:2%;" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'event:create_event' %}">
+                            Create Event</a>
+                        <a class="dropdown-item" href="{% url 'event:my_events' %}">
+                            Manage Event</a>
+                        <a class="dropdown-item" href="{% url 'event:logout' %}">
+                            Log out</a>
                     </div>
-                {% endif %}
-            </div>
+                </div>
+            {% endif %}
         </div>
     </nav>
+
     {% block content %}
 
     {% endblock %}
+
+    <footer>
+        <div class="text-center p-3 fixed-bottom text-white" style="background-color: #8868de">
+            © 2023 Copyright:
+            <a class="text-white link-underline-opacity-0" href="http://127.0.0.1:8000">Season Events</a>
+        </div>
+    </footer>
 
     <script>
         $(document).ready(function() {
@@ -62,5 +75,15 @@
         });
     </script>
 
+    {% if messages %}
+        <script>
+            {% for message in messages %}
+                var messageType = "{{ message.tags }}";
+                var messageText = "{{ message }}";
+                if (messageType === "error")
+                    alert(messageText);
+            {% endfor %}
+        </script>
+    {% endif %}
 </body>
 </html>

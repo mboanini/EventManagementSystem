@@ -4,8 +4,9 @@
 
 {% block content %}
     <div class="d-flex justify-content-center mt-3">
-        <div class="card col-11" style = "background-color: #e6d4f7;">
-            <img src="{{ MEDIA_URL }}{{ evento.image.url }}" class="card-img-top img-fluid rounded-start" alt="Evento Image">
+        <div class="card col-11" style = "background-color: #e6d4f7; border-radius:0;">
+            <img src="{{ MEDIA_URL }}{{ evento.image.url }}" class="card-img-top img-fluid rounded-start"
+                 alt="Evento Image">
             <div class="card-body">
                 <h4 class="card-title text-uppercase">{{ event.title }}</h4>
                 <p class="sub-title">{{ event.description }}</p>
@@ -16,10 +17,17 @@
             </div>
             <div class="card-footer">
             <p>Only {{ event.available_seats }} seats available! Are you interested?
-                <a href="{% url 'event:login' %}" class="link-offset-2 link-offset-3-hover link-underline
-                    link-underline-opacity-0 link-underline-opacity-75-hover">
-                    Click here
-                </a>
+                {% if not user.is_authenticated %}
+                    <a href="{% url 'event:login' %}" class="link-offset-2 link-offset-3-hover link-underline
+                        link-underline-opacity-0 link-underline-opacity-75-hover">
+                        Click here
+                    </a>
+                {%  else %}
+                    <a href="{% url 'event:buy_ticket' title=event.title %}" class="link-offset-2 link-offset-3-hover
+                        link-underline-link-underline-opacity-0 link-underline-opacity-75-hover">
+                        Click here
+                    </a>
+                {%  endif %}
             </p>
             </div>
         </div>

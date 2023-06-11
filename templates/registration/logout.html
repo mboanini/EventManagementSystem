@@ -11,7 +11,7 @@
         <form method="POST">
             {% csrf_token %}
             {{ form | crispy }}
-            <button type="submit" class="btn " style="background-color: white; border-color: darkgrey">
+            <button type="submit" class="btn mt-3" style="background-color: white; border-color: darkgrey">
                 <a href="{%  url 'event:event_list' %}" class="link-dark link-underline-opacity-0" >Log Out</a>
             </button>
         </form>
