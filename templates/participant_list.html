@@ -2,21 +2,26 @@
 
 {% block title %} Participant List {% endblock title %}
 {% block content %}
-    <h1>Participant List - {{ event.title }}</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Participant</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody>
-            {%  for registration in registrations %}
+    <div class="mx-3 my-3">
+        <h1>Participant List - {{ event.title }}</h1>
+        <table class="table table-striped">
+            <thead>
                 <tr>
-                    <td>{{ registration.participant.username }}</td>
-                    <td>{{ registration.participant.email }}</td>
+                    <th scope="col">#</th>
+                    <th scope="col">Participant</th>
+                    <th scope="col">Email</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {%  for registration in registrations %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ registration.participant.username }}</td>
+                        <td>{{ registration.participant.email }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
 {% endblock %}

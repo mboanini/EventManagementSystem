@@ -7,7 +7,7 @@
 {% block content %}
 
         <h1 class="text-center">Create Event</h1>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center mb-3">
         <form class="col-6" method="post">
             {% csrf_token %}
             {{ form | crispy }}

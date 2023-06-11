@@ -85,7 +85,7 @@ def remove_event(request, title):
 
     if request.method == 'POST':
         event.delete()
-        return redirect('event:event_list')
+        return redirect('event:my_events')
 
     return render(request, 'remove_event.html', {'event': event})
 

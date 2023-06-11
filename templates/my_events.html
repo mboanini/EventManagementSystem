@@ -17,8 +17,13 @@
                             <p class="card-descr">
                                 {{ event.description }}
                             </p>
-                            <a href="{% url 'event:modify_event' title=event.title %}" class="btn btn-outline-info">Modify</a>
-                            <a href="{% url 'event:remove_event' title=event.title %}" class="btn btn-outline-info">Remove</a>
+                            <div class="text-end">
+                                <a href="{% url 'event:modify_event' title=event.title %}" class="btn btn-outline-info">Modify</a>
+                                <a href="{% url 'event:remove_event' title=event.title %}" class="btn btn-outline-info">Remove</a>
+                                <a href="{% url 'event:participant_list' title=event.title %}" class="btn btn-outline-info mt-2">
+                                    Subscriber List</a>
+                            </div>
+
                         </div>
                     </div>
                 </div>
