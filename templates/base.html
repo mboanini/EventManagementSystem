@@ -16,49 +16,37 @@
 <body>
     <nav class="navbar navbar-expand-lg" style="background-color: #8868de;">
         <div class="container-fluid">
-            <a class="navbar-brand h1" style="color: white">Season Events</a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
-                    aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <form class="d-flex" role="search" method="GET" action="{% url 'event:event_search' %}">
-                        <input class="form-control me-2" type="text" name="query" placeholder="Search" aria-label="Search"
-                            value="{{ query }}">
-                        <button class="btn btn-outline-light" type="submit">Search</button>
-                    </form>
-                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8000" style="color:white;">
-                            Home</a>
-                    </li>
-                    {% if not user.is_authenticated %}
+            <a class="navbar-brand h1" style="color: white" href="http://127.0.0.1:8000">Season Events</a>
+                <form class="d-flex" role="search" method="GET" action="{% url 'event:event_search' %}">
+                    <input class="form-control me-2" type="text" name="query" placeholder="Search" aria-label="Search"
+                        value="{{ query }}">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+                {% if not user.is_authenticated %}
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'event:login' %}" style="color:white;">Log in</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'event:signup' %}" style="color:white;">Sign Up</a>
                         </li>
-                    {% else %}
-                        <div class="dropdown text-end">
-                            <button class="btn btn-outline-light dropdown-toggle" id="dropdownMenuButton" type="button"
-                                    aria-expanded="false" data-toggle="dropdown" aria-haspopup="true">
-                                Hi, {{ request.user.username }}!
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="{% url 'event:create_event' %}">
-                                    Create Event</a>
-                                <a class="dropdown-item" href="{% url 'event:my_events' %}">
-                                    Manage Event</a>
-                                <a class="dropdown-item" href="{% url 'event:logout' %}">
-                                    Log out</a>
-                            </div>
+                    </ul>
+                {% else %}
+                    <div class="dropdown text-end">
+                        <button class="btn btn-outline-light dropdown-toggle" id="dropdownMenuButton" type="button"
+                            aria-expanded="false" data-toggle="dropdown" aria-haspopup="true">
+                            Hi, {{ request.user.username }}!
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{% url 'event:create_event' %}">
+                                Create Event</a>
+                            <a class="dropdown-item" href="{% url 'event:my_events' %}">
+                                Manage Event</a>
+                            <a class="dropdown-item" href="{% url 'event:logout' %}">
+                                Log out</a>
                         </div>
-                    {% endif %}
-
-
-                </ul>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </nav>
