@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'event.apps.EventConfig',
+    'crispy_forms',
+    'crispy_bootstrap5',
+    'django_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +131,5 @@ CSRF_COOKIE_SECURE = False
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
