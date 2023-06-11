@@ -2,13 +2,13 @@
 
 {% block title %} Events {% endblock title %}
 {% block content %}
-    <h1>Event List</h1>
+    <h1 class="text-center my-3">Event List</h1>
     <ul>
-        {% for event in events %}
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-                <div class="card h-100" style="width: 18rem;">
-                    <img src="{{ event.image.url }}" class="card-img-top">
+        <div class="row blank">
+            {% for event in events %}
+            <div class="col-xs-12 col-sm-6 col-md-5 col-lg-3 mt-3">
+                <div class="card" style="width: 15rem;">
+                    <!--<img src="{{ MEDIA_URL }}{{ event.image }}" class="card-img-top" alt="Event Image">-->
                     <div class="card-body">
                         <h5 class="card-title">
                             {{ event.title }}
@@ -21,9 +21,8 @@
                     </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
-
-        {% endfor %}
     </ul>
 {% endblock %}
 
