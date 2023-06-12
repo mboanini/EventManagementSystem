@@ -19,5 +19,10 @@ urlpatterns = [
     path('myEvents/', views.my_events, name='my_events'),
     path('myProfile/', views.my_profile, name='my_profile'),
     path('newCategory/', views.create_category, name='category'),
-    
+    path('buy_ticket/<str:title>/', views.buy_ticket, name='buy_ticket'),
+    path('cancel_booking/<str:title>/', views.cancel_booking, name='cancel_booking'),
+    path('event_registration/<str:title>/', views.event_registration, name='event_registration'),
+    path('already_registered/<str:title>/', views.already_registered, name='already_registered'),
+    path('payment/', views.payment, name='payment'),
+    path('unsubscribe/', views.unsubscribe, name='unsubscribe'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

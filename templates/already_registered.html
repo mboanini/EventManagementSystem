@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %} Registration {% endblock title %}
+
+{% block content %}
+    <h3 class="mt-5 text-center">Summary - {{ event.title }}</h3>
+    <div class="d-flex justify-content-center align-self-center">
+        <div class="card mt-4">
+            <div class="card-body" style="width: 18rem;">
+                <h5 class="card-title">{{ event.title }}</h5>
+                <p class="card-text">{{ event.description }}</p>
+            </div>
+             <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <b>Date</b>: {{ event.date }}
+                </li>
+                <li class="list-group-item">
+                    <b>Place</b>: {{ event.location }}
+                </li>
+             </ul>
+            <div class="card-body">
+                    <p>You have already signed up for this event.</p>
+                    <a  href="{% url 'event:cancel_booking' title=event.title %}" class="btn btn-style ">
+                        Cancel Booking</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

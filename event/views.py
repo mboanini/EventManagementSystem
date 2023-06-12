@@ -148,3 +148,61 @@ def create_category(request):
         form = CategoryForm()
 
     return render(request, "create_category.html", {'form': form})
+
+
+def buy_ticket(request, title):
+    event = get_object_or_404(Event, title=title)
+    user = request.user
+
+    registered = Registration.objects.filter(event=event, participant=user).exists()
+
+    if registered:
+        return redirect('event:already_registered', title=event.title)
+
+    if not registered:
+        if event.available_seats > 0:
+            registration = Registration.objects.create(event=event, participant=user)
+            registration.save()
+            event.available_seats -= 1
+            event.participants.add(user)
+            user.events_participants.add(event)
+            event.save()
+            return redirect('event:event_registration', title=event.title)
+        else:
+            messages.error(request, "Too late...The event is sold out")
+            return redirect('event:event_list')
+
+
+def cancel_booking(request, title):
+    event = get_object_or_404(Event, title=title)
+    registered = Registration.objects.filter(event=event, participant=request.user).exists()
+
+    if not registered:
+        return redirect('event:event_registration', title=event.title)
+
+    Registration.objects.filter(event=event, participant=request.user).delete()
+    event.available_seats += 1
+    event.save()
+    event.participants.remove(request.user)
+    request.user.events_participants.remove(event)
+    event.save()
+
+    return redirect('event:unsubscribe')
+
+
+def event_registration(request, title):
+    event = get_object_or_404(Event, title=title)
+    return render(request, 'event_registration.html', {'event': event})
+
+
+def already_registered(request, title):
+    event = get_object_or_404(Event, title=title)
+    return render(request, 'already_registered.html', {'event': event})
+
+
+def payment(request):
+    return render(request, 'payment.html')
+
+
+def unsubscribe(request):
+    return render(request, "unsubscribe.html")
