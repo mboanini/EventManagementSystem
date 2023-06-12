@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Event, Registration
 from django.contrib.auth.decorators import login_required
-from .forms import EventForm, SignUpForm
+from .forms import EventForm, SignUpForm, CategoryForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib import messages
+
 
 def signup(request):
     if request.method == 'POST':
@@ -43,8 +44,6 @@ def event_list(request):
 def event_detail(request, title):
     event = Event.objects.get(title=title)
     return render(request, 'event_detail.html', {'event': event})
-
-
 
 
 @login_required
@@ -158,3 +157,15 @@ def my_profile(request):
 
     return render(request, 'profile.html', {'created_events': created_events,
                                             'registered_events': registered_events})
+
+
+def create_category(request):
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('event:create_event')
+    else:
+        form = CategoryForm()
+
+    return render(request, "create_category.html", {'form': form})

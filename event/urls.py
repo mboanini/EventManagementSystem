@@ -18,5 +18,6 @@ urlpatterns = [
     path('ticket/<str:title>', views.buy_ticket, name='buy_ticket'),
     path('search/', views.event_search, name='event_search'),
     path('myEvents/', views.my_events, name='my_events'),
-    path('myProfile/', views.my_profile, name='my_profile')
+    path('myProfile/', views.my_profile, name='my_profile'),
+    path('newCategory/', views.create_category, name='category')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

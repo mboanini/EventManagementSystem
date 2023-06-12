@@ -1,5 +1,5 @@
 from django import forms
-from .models import Event
+from .models import Event, EventCategory
 from django.contrib.auth.forms import UserCreationForm, User
 
 
@@ -18,3 +18,9 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'username', 'email', 'password1', 'password2')
+
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = EventCategory
+        fields = ['name']

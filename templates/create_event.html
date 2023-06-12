@@ -11,6 +11,11 @@
         <form class="col-6" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form | crispy }}
+            <div class="alert" role="alert">
+            If the desired category is not present among the existing ones, you can create it.
+            <a href="{% url 'event:category' %}" class="alert-link link-dark link-offset-2 link-underline-opacity-25
+                link-underline-opacity-100-hover"> Create new category</a>
+            </div>
             <button class="btn btn-light " type="submit" style="border-color: darkgrey">Create</button>
         </form>
     </div>
