@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %} My Profile {% endblock title %}
+
+{% block content %}
+
+    <div class="d-flex justify-content-center my-5">
+        <div class="card text-center col-6">
+        <div class="card-header">
+            Payment confirmation
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">This is the payment receipt</h5>
+            <a href="{% url 'event:my_profile' %}" class="btn m-2" style="background-color: limegreen">
+                Payment successfull</a>
+        </div>
+        <div class="card-footer text-muted">
+            30 sec ago
+        </div>
+    </div>
+    </div>
+
+{% endblock %}

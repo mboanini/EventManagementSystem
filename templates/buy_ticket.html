@@ -21,10 +21,12 @@
             <div class="card-body">
                 {% if is_registered %}
                     <p>You are already registered for this event.</p>
+                    <a  href="{% url 'event:cancel_booking' title=event.title %}" class="btn btn-style ">
+                        Cancel Booking</a>
                 {% else %}
                     <form method="POST">
                         {% csrf_token %}
-                        <input type="submit" value="Buy Ticket">
+                        <input type="submit" class="btn btn-style" value="Buy Ticket">
                     </form>
                 {% endif %}
             </div>

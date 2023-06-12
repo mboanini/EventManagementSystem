@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %} Cancel Booking {% endblock title %}
+
+{% block content %}
+    <div class="d-flex justify-content-center my-5">
+        <div class="card text-center col-6">
+        <div class="card-header">
+            Cancel booking
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">You are no longer registered for the event</h5>
+            <a href="{% url 'event:my_profile' %}" class="btn btn-style m-2">
+                To my profile</a>
+        </div>
+        <div class="card-footer text-muted">
+            30 sec ago
+        </div>
+    </div>
+    </div>
+{% endblock %}

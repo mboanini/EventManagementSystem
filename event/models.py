@@ -16,7 +16,7 @@ class Event(models.Model):
     time = models.TimeField(default=datetime.time)
     location = models.CharField(max_length=100)
     program = models.TextField(default='Not Available')
-    # ticket_price = models.DecimalField(max_digits=8, decimal_places=2)
+    ticket_price = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     image = models.ImageField(upload_to=event_image_upload_path, null=True, blank=True)
     category = models.ManyToManyField('EventCategory')
     # participants = models.ManyToManyField(User, related_name="events_participants")

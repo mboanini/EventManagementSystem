@@ -120,12 +120,16 @@ def buy_ticket(request, title):
             event.available_seats -= 1
             event.save()
 
-            return redirect('event:event_detail', title=event.title)
+            return redirect('event:payment')
         else:
             messages.error(request, "Too late...The event is sold out :(")
             return redirect('event:event_list')
 
     return render(request, 'buy_ticket.html', {'event': event, 'is_registered': is_registered})
+
+
+def payment(request):
+    return render(request, 'payment.html')
 
 
 def event_search(request):
@@ -169,3 +173,22 @@ def create_category(request):
         form = CategoryForm()
 
     return render(request, "create_category.html", {'form': form})
+
+
+def cancel_booking(request, title):
+    event = get_object_or_404(Event, title=title)
+    is_registered = Registration.objects.filter(event=event, user=request.user).exists()
+
+    if not is_registered:
+        return redirect('event:buy_ticket')
+
+    Registration.objects.filter(event=event, user=request.user).delete()
+    event.available_seats += 1
+    event.save()
+
+    return redirect('event:unsubscribe')
+
+
+def unsubscribe(request):
+    return render(request, "unsubscribe.html")
+

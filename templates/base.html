@@ -36,23 +36,30 @@
     <nav class="navbar navbar-expand-lg" style="background-color: #8868de;">
         <div class="container-fluid">
             <a class="navbar-brand h1" style="color: white" href="http://127.0.0.1:8000">Season Events</a>
-            <form class="d-flex" role="search" method="GET" action="{% url 'event:event_search' %}">
-                <input class="form-control me-2" type="text" name="query" placeholder="Search" aria-label="Search"
-                    value="{{ query }}">
-                <button class="btn btn-outline-light" type="submit">Search</button>
-            </form>
             {% if not user.is_authenticated %}
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <!--<ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'event:login' %}" style="color:white;">Log in</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'event:signup' %}" style="color:white;">Sign Up</a>
                     </li>
-                </ul>
+                </ul>-->
+                <div class="dropdown text-end">
+                    <button class="btn btn-outline-light dropdown-toggle mx-4" style="border-radius:2%;" id="dropdownMenuButton" type="button"
+                            aria-expanded="false" data-toggle="dropdown" aria-haspopup="true">
+                            Hello!
+                    </button>
+                    <div class="dropdown-menu" style="border-radius:2%;" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'event:login' %}">
+                            Sign Up</a>
+                        <a class="dropdown-item" href="{% url 'event:signup' %}">
+                            Log In</a>
+                    </div>
+                </div>
             {% else %}
                 <div class="dropdown text-end">
-                    <button class="btn btn-outline-light dropdown-toggle mx-2" style="border-radius:2%;" id="dropdownMenuButton" type="button"
+                    <button class="btn btn-outline-light dropdown-toggle mx-4" style="border-radius:2%;" id="dropdownMenuButton" type="button"
                             aria-expanded="false" data-toggle="dropdown" aria-haspopup="true">
                             Hi, {{ request.user.username }}!
                     </button>
@@ -68,6 +75,11 @@
                     </div>
                 </div>
             {% endif %}
+            <form class="ml-auto d-flex" role="search" method="GET" action="{% url 'event:event_search' %}">
+                <input class="form-control me-2" type="text" name="query" placeholder="Search" aria-label="Search"
+                    value="{{ query }}">
+                <button class="btn btn-outline-light" type="submit">Search</button>
+            </form>
         </div>
     </nav>
 
