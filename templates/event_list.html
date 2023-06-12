@@ -1,7 +1,19 @@
 {% extends "base.html" %}
+{%  load static %}
 
 {% block title %} Events {% endblock title %}
 {% block content %}
+
+    <div class="d-flex justify-content-center">
+        <div class="d-flex text-end mx-2 my-3" style="align-content: center; align-items: center;">
+                <h1 class="card-title p-2" style="color: #8868de;">How would you like to spend time in Florence?<br>
+                    <b>Here is everything you are looking for!</b></h1>
+        </div>
+        <div class="mx-1 my-3">
+            <img src="{%  static 'images/florence-panoramic-view.jpg'%}" class="card-img" alt="Florence" style="opacity: 0.75;">
+        </div>
+    </div>
+
     <h1 class="text-start my-3 mx-5">Event List</h1>
     <ul>
         <div class="d-flex justify-content-start mx-3 my-3 flex-wrap">
@@ -9,7 +21,7 @@
             {% for event in events %}
             <div class="mx-3 my-3">
             <!--<div class="col-xs-12 col-sm-6 col-md-5 col-lg-3 mt-3 ">-->
-                <div class="card" style="width: 15rem; border-radius:0;">
+                <div class="card" style="width: 15rem; border-radius:2%;">
                     <img src="{{ MEDIA_URL }}{{ event.image }}" class="card-img-top" alt="Event Image">
                     <div class="card-body">
                         <h5 class="card-title">

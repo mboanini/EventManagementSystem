@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Event, Registration
+from .models import Event, Registration, EventCategory
 from django.contrib.auth.decorators import login_required
 from .forms import EventForm, SignUpForm, CategoryForm
 from django.contrib.auth.forms import AuthenticationForm
@@ -107,31 +107,6 @@ def participant_list(request, title):
     return render(request, 'participant_list.html', {'event': event, 'registrations': registrations})
 
 
-def buy_ticket(request, title):
-    event = get_object_or_404(Event, title=title)
-
-    is_registered = Registration.objects.filter(event=event, participant=request.user).exists()
-
-    if request.method == 'POST':
-        if event.available_seats > 0:
-            registration = Registration(event=event, participant=request.user)
-            registration.save()
-
-            event.available_seats -= 1
-            event.save()
-
-            return redirect('event:payment')
-        else:
-            messages.error(request, "Too late...The event is sold out :(")
-            return redirect('event:event_list')
-
-    return render(request, 'buy_ticket.html', {'event': event, 'is_registered': is_registered})
-
-
-def payment(request):
-    return render(request, 'payment.html')
-
-
 def event_search(request):
     query = request.GET.get('query')
 
@@ -173,22 +148,3 @@ def create_category(request):
         form = CategoryForm()
 
     return render(request, "create_category.html", {'form': form})
-
-
-def cancel_booking(request, title):
-    event = get_object_or_404(Event, title=title)
-    is_registered = Registration.objects.filter(event=event, user=request.user).exists()
-
-    if not is_registered:
-        return redirect('event:buy_ticket')
-
-    Registration.objects.filter(event=event, user=request.user).delete()
-    event.available_seats += 1
-    event.save()
-
-    return redirect('event:unsubscribe')
-
-
-def unsubscribe(request):
-    return render(request, "unsubscribe.html")
-

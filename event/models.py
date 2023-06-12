@@ -19,7 +19,7 @@ class Event(models.Model):
     ticket_price = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     image = models.ImageField(upload_to=event_image_upload_path, null=True, blank=True)
     category = models.ManyToManyField('EventCategory')
-    # participants = models.ManyToManyField(User, related_name="events_participants")
+    participants = models.ManyToManyField(User, related_name="events_participants")
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='events_created')
     max_seats = models.PositiveIntegerField()
     available_seats = models.PositiveIntegerField()

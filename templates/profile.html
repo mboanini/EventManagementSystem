@@ -3,7 +3,7 @@
 {% block title %} My Profile {% endblock title %}
 
 {% block content %}
-    <h5 class="mx-2 my-3">{{ request.user.username }}</h5>
+    <h5 class="mx-5 my-3 text-end">Welcome, {{ request.user.username }}!</h5>
 
     <div class="d-flex justify-content-center">
         <h4 class="mx-2" style="white-space: nowrap">Created Events</h4>
@@ -28,6 +28,12 @@
                 </div>
             </div>
         </div>
+        {% empty %}
+            <p style="text-align: center;" class="mx-4">
+                <b>No events have been created.</b>
+                <a href="{% url 'event:create_event' %}" class="link-offset-2 link-offset-3-hover link-underline
+                link-underline-opacity-0 link-underline-opacity-75-hover link-dark"> Create new event</a>
+            </p>
         {% endfor %}
     </div>
 
@@ -52,6 +58,12 @@
                 </div>
             </div>
         </div>
+        {% empty %}
+            <p style="text-align: center;" class="mx-4">
+                <b>There are no events booked.</b>
+                <a href="{% url 'event:event_list' %}" class="link-offset-2 link-offset-3-hover link-underline
+                link-underline-opacity-0 link-underline-opacity-75-hover link-dark"> See events</a>
+            </p>
         {% endfor %}
      </div>
 

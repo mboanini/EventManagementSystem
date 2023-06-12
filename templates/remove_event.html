@@ -9,6 +9,8 @@
             {% csrf_token %}
             <input type="submit" class="btn " style="background-color: white; border-color: darkgrey"
                    value="Remove">
+            <a href="{% url 'event:my_events' %}" class="btn " style="background-color: white;
+                border-color: darkgrey">Cancel </a>
         </form>
     </div>
 {% endblock %}

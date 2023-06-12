@@ -7,7 +7,7 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = ['title', 'description', 'date', 'time', 'location', 'category',
-                  'creator', 'max_seats', 'available_seats', 'program', 'image']
+                  'creator', 'ticket_price', 'max_seats', 'available_seats', 'program', 'image']
 
 
 class SignUpForm(UserCreationForm):
@@ -17,7 +17,7 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username', 'email', 'password1', 'password2')
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
 
 
 class CategoryForm(forms.ModelForm):

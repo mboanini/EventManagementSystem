@@ -34,47 +34,41 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg" style="background-color: #8868de;">
-        <div class="container-fluid">
-            <a class="navbar-brand h1" style="color: white" href="http://127.0.0.1:8000">Season Events</a>
-            {% if not user.is_authenticated %}
-                <!--<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'event:login' %}" style="color:white;">Log in</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'event:signup' %}" style="color:white;">Sign Up</a>
-                    </li>
-                </ul>-->
-                <div class="dropdown text-end">
-                    <button class="btn btn-outline-light dropdown-toggle mx-4" style="border-radius:2%;" id="dropdownMenuButton" type="button"
-                            aria-expanded="false" data-toggle="dropdown" aria-haspopup="true">
-                            Hello!
-                    </button>
-                    <div class="dropdown-menu" style="border-radius:2%;" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="{% url 'event:login' %}">
-                            Sign Up</a>
-                        <a class="dropdown-item" href="{% url 'event:signup' %}">
-                            Log In</a>
+        <div class="container-fluid justify-content-between">
+            <div class="d-flex">
+                <a class="navbar-brand h1" style="color: white" href="http://127.0.0.1:8000">Season Events</a>
+                {% if not user.is_authenticated %}
+                    <div class="dropdown text-end">
+                        <button class="btn btn-outline-light dropdown-toggle mx-4" style="border-radius:2%;" id="dropdownMenuButton" type="button"
+                                aria-expanded="false" data-toggle="dropdown" aria-haspopup="true">
+                                Hello!
+                        </button>
+                        <div class="dropdown-menu" style="border-radius:2%;" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{% url 'event:login' %}">
+                                Log In</a>
+                            <a class="dropdown-item" href="{% url 'event:signup' %}">
+                                Sign Up</a>
+                        </div>
                     </div>
-                </div>
-            {% else %}
-                <div class="dropdown text-end">
-                    <button class="btn btn-outline-light dropdown-toggle mx-4" style="border-radius:2%;" id="dropdownMenuButton" type="button"
-                            aria-expanded="false" data-toggle="dropdown" aria-haspopup="true">
-                            Hi, {{ request.user.username }}!
-                    </button>
-                    <div class="dropdown-menu" style="border-radius:2%;" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="{% url 'event:my_profile' %}">
-                            My Profile</a>
-                        <a class="dropdown-item" href="{% url 'event:create_event' %}">
-                            Create Event</a>
-                        <a class="dropdown-item" href="{% url 'event:my_events' %}">
-                            Manage Event</a>
-                        <a class="dropdown-item" href="{% url 'event:logout' %}">
-                            Log out</a>
+                {% else %}
+                    <div class="dropdown text-end">
+                        <button class="btn btn-outline-light dropdown-toggle mx-4" style="border-radius:2%;" id="dropdownMenuButton" type="button"
+                                aria-expanded="false" data-toggle="dropdown" aria-haspopup="true">
+                                Hi, {{ request.user.username }}!
+                        </button>
+                        <div class="dropdown-menu" style="border-radius:2%;" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{% url 'event:my_profile' %}">
+                                My Profile</a>
+                            <a class="dropdown-item" href="{% url 'event:create_event' %}">
+                                Create Event</a>
+                            <a class="dropdown-item" href="{% url 'event:my_events' %}">
+                                Manage Event</a>
+                            <a class="dropdown-item" href="{% url 'event:logout' %}">
+                                Log out</a>
+                        </div>
                     </div>
-                </div>
-            {% endif %}
+                {% endif %}
+            </div>
             <form class="ml-auto d-flex" role="search" method="GET" action="{% url 'event:event_search' %}">
                 <input class="form-control me-2" type="text" name="query" placeholder="Search" aria-label="Search"
                     value="{{ query }}">
@@ -82,6 +76,10 @@
             </form>
         </div>
     </nav>
+
+    <p class="m-3">
+        <a href="{% url 'event:event_list'%}" style="color: black;" class="link-offset-2 link-offset-1-hover link-underline
+                link-underline-opacity-0 link-underline-opacity-75-hover link-dark"> <b> Home </b></a></p>
 
     {% block content %}
 
