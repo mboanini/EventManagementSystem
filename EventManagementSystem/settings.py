@@ -66,6 +66,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -118,7 +119,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 #STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static'), ]
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -131,8 +132,8 @@ LOGIN_REDIRECT_URL = 'event_list'
 
 CSRF_COOKIE_SECURE = False
 
-MEDIA_ROOT = BASE_DIR/ 'media'
-MEDIA_URL = '/media/images/'
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
 
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

@@ -5,6 +5,10 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+def event_image_upload_path(instance, filename):
+    return f'{filename}'
+
+
 class Event(models.Model):
     title = models.CharField(max_length=100, primary_key=True)
     description = models.TextField()
@@ -13,7 +17,7 @@ class Event(models.Model):
     location = models.CharField(max_length=100)
     program = models.TextField(default='Not Available')
     # ticket_price = models.DecimalField(max_digits=8, decimal_places=2)
-    image = models.ImageField(upload_to='media/images/', null=True, blank=True)
+    image = models.ImageField(upload_to=event_image_upload_path, null=True, blank=True)
     category = models.ManyToManyField('EventCategory')
     # participants = models.ManyToManyField(User, related_name="events_participants")
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='events_created')
