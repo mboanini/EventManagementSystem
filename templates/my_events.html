@@ -3,7 +3,8 @@
 {% block title %} Events {% endblock title %}
 
 {% block content %}
-    <div class="d-flex justify-content-center mx-3 ">
+    <h3 class="mx-4 my-4" > Manage your events</h3>
+    <div class="d-flex justify-content-start mx-4 ">
         {% if events %}
             <div class="row ml-3">
                 {% for event in events %}
@@ -18,11 +19,11 @@
                                 {{ event.description }}
                             </p>
                             <div class="text-end">
-                                <a href="{% url 'event:modify_event' title=event.title %}" class="btn btn-outline-info m-1">
+                                <a href="{% url 'event:modify_event' title=event.title %}" class="btn btn-style btn-outline-info m-1">
                                     Modify</a>
-                                <a href="{% url 'event:remove_event' title=event.title %}" class="btn btn-outline-info m-1">
+                                <a href="{% url 'event:remove_event' title=event.title %}" class="btn btn-style btn-outline-info m-1">
                                     Remove</a>
-                                <a href="{% url 'event:participant_list' title=event.title %}" class="btn btn-outline-info m-1">
+                                <a href="{% url 'event:participant_list' title=event.title %}" class="btn btn-style btn-outline-info m-1">
                                     Subscriber List</a>
                             </div>
 
