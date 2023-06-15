@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Event, Registration, EventCategory
+from .models import Event, Registration
 from django.contrib.auth.decorators import login_required
 from .forms import EventForm, SignUpForm, CategoryForm
 from django.contrib.auth.forms import AuthenticationForm

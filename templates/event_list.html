@@ -3,23 +3,12 @@
 
 {% block title %} Events {% endblock title %}
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-md-6 d-flex justify-content-center">
-                <div class="d-flex text-end mx-2 my-3" style="align-content: center; align-items: center;">
-                    <h1 class="card-title p-2" style="color: #8868de;">Discovering Florence!<br>
-                    <b>Here is everything you are looking for!</b></h1>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-6 d-flex justify-content-center">
-                <div class="text-center my-3">
-                    <img src="{%  static 'images/florence-panoramic-view.jpg'%}" class="card-img" alt="Florence" style="opacity: 0.75;">
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <h1 class="text-start my-3 mx-5">Event List</h1>
+    <p style="background-color: #8868de; color: white;" class="col-12 p-4 h1 text-center">
+            Discovering Florence...<b>Here is everything you are looking for!</b> </p>
+
+    <div id="images" style="background-image: url(https://content.skyscnr.com/m/7267e6301f7cc00c/original/GettyImages-139509777_doc.jpg?resize=1800px:1800px&quality=100)"></div>
+
     <ul>
         <div class="d-flex justify-content-start mx-3 my-3 flex-wrap">
             {% for event in events %}
