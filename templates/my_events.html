@@ -3,6 +3,10 @@
 {% block title %} Events {% endblock title %}
 
 {% block content %}
+    <p class="m-3">
+        <a href="{% url 'event:event_list'%}" style="color: black;" class="link-offset-2 link-offset-1-hover link-underline
+                link-underline-opacity-0 link-underline-opacity-75-hover link-dark"> <b> Home </b></a></p>
+
     <h3 class="mx-4 my-4" > Manage your events</h3>
     <div class="d-flex justify-content-start mx-4 ">
         {% if events %}

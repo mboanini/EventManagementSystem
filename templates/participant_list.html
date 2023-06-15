@@ -2,6 +2,10 @@
 
 {% block title %} Participant List {% endblock title %}
 {% block content %}
+    <p class="m-3">
+        <a href="{% url 'event:event_list'%}" style="color: black;" class="link-offset-2 link-offset-1-hover link-underline
+                link-underline-opacity-0 link-underline-opacity-75-hover link-dark"> <b> Home </b></a></p>
+
     <div class="mx-3 my-3">
         <h1>Participant List - {{ event.title }}</h1>
         <table class="table table-striped">
