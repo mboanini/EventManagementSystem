@@ -7,8 +7,8 @@
         <a href="{% url 'event:event_list'%}" style="color: black;" class="link-offset-2 link-offset-1-hover link-underline
                 link-underline-opacity-0 link-underline-opacity-75-hover link-dark"> <b> Home </b></a></p>
 
-    <div class="d-flex justify-content-start m-3">
-        <div class="card col-6 text-bg-white m-2" style = " border-radius:1%;">
+    <div class="d-flex flex-wrap justify-content-start m-3">
+        <div class="card col-sm-12 col-md-6 text-bg-white m-2" style = " border-radius:1%;">
             <img src="{{ MEDIA_URL }}{{ event.image }}" class="card-img"
                  alt="Event Image">
             <div class="card-body">
@@ -27,7 +27,7 @@
                 </p>
             </div>
         </div>
-        <div class="card m-2" style="width: 18rem; border-radius: 0;">
+        <div class="col-sm-12 sol-md-6 card m-2" style="width: 18rem; border-radius: 0;">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                     <p><b>Date</b>: {{ event.date }}</p>
